@@ -1,14 +1,10 @@
 from flask import Flask
-import os
+from rest.ticket import ticket
 
 app = Flask(__name__)
-
-
-@app.route('/')
-def home():
-    return 'lalsdgdsalala'
+app.register_blueprint(ticket, url_prefix='/ticket')
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
+    port = 5000
     app.run(debug=True, host='0.0.0.0', port=port)
