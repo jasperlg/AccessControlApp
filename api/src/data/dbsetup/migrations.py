@@ -1,4 +1,3 @@
-from turtle import dot
 from data.database import doTransaction
 
 MEMBER = '''
@@ -40,22 +39,6 @@ CREATE TABLE IF NOT EXISTS bank_account (
 )
 '''
 
-TICKET = '''
-CREATE TABLE IF NOT EXISTS ticket (
-    id SERIAL PRIMARY KEY,
-    typeId INT NOT NULL,
-    memberId INT NOT NULL,
-    price NUMERIC NOT NULL,
-    start_date DATE,
-    end_date DATE,
-    turns_left INT,
-    active BOOLEAN NOT NULL DEFAULT TRUE,
-    created_at TIMESTAMP NOT NULL DEFAULT now(),
-    updated_at TIMESTAMP NOT NULL DEFAULT now(),
-    deleted_at TIMESTAMP
-)
-'''
-
 TICKET_TYPE = '''
 CREATE TYPE TICKET_TYPE AS ENUM ('subscription', 'turn_card')
 '''
@@ -65,9 +48,27 @@ CREATE TABLE IF NOT EXISTS ticket_definition (
     id SERIAL PRIMARY KEY,
     type TICKET_TYPE NOT NULL,
     name VARCHAR(255) NOT NULL,
-    price NUMERIC NOT NULL,
+    price FLOAT8 NOT NULL,
     duration INTERVAL,
     turns INT,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now(),
+    deleted_at TIMESTAMP
+)
+'''
+
+TICKET = '''
+CREATE TABLE IF NOT EXISTS ticket (
+    id SERIAL PRIMARY KEY,
+    typeId INT NOT NULL,
+    memberId INT NOT NULL,
+    price FLOAT8 NOT NULL,
+    start_date DATE,
+    end_date DATE,
+    turns_left INT,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (typeId) REFERENCES ticket_definition (id),
+    FOREIGN KEY (memberId) REFERENCES member (id),
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP NOT NULL DEFAULT now(),
     deleted_at TIMESTAMP
@@ -77,16 +78,24 @@ CREATE TABLE IF NOT EXISTS ticket_definition (
 PAYEMENT = '''
 CREATE TABLE IF NOT EXISTS payement (
     id SERIAL PRIMARY KEY,
-    ticket_id INT NOT NULL,
+    ticketId INT NOT NULL,
     payement_period INT,
     date DATE NOT NULL,
-    amount NUMERIC NOT NULL,
-    payed_amount NUMERIC NOT NULL DEFAULT 0,
+    amount FLOAT8 NOT NULL,
+    payed_amount FLOAT8 NOT NULL DEFAULT 0,
+    FOREIGN KEY (ticketId) REFERENCES ticket (id),
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP NOT NULL DEFAULT now(),
     deleted_at TIMESTAMP
 )
 '''
+
+DROP_SCHEMA = '''
+DROP TABLE IF EXISTS ticket, payement, ticket_definition, bank_account, member
+'''
+
+def removeDBTables():
+    doTransaction(DROP_SCHEMA)
 
 def createDBTables():
     try:
@@ -94,4 +103,4 @@ def createDBTables():
     except:
         print('TICKET_TYPE already exists')
 
-    doTransaction(MEMBER, BANK_ACCOUNT, TICKET, TICKET_DEFINITION, PAYEMENT)
+    doTransaction(MEMBER, BANK_ACCOUNT, TICKET_DEFINITION, TICKET, PAYEMENT)

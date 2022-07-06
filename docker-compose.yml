@@ -8,6 +8,8 @@ services:
       - postgres
     volumes:
       - ./api/src:/usr/src/app
+    environment:
+      - PYTHONUNBUFFERED=1
   postgres:
     ports:
       - 5432:5432

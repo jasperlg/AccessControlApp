@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2.extras import RealDictCursor
 
 USER = 'postgres'
 PASSWORD = 'mysecretpossword'
@@ -12,33 +13,36 @@ def connect():
     except (Exception, psycopg2.DatabaseError) as error:
         raise error
 
-def doTransaction(*commands):
+def doTransaction(*commands, values:list=None):
     try:
         conn = connect()
         cur = conn.cursor()
 
-        for command in commands:
-            cur.execute(command)
+        if values == None:
+            for command in commands:
+                cur.execute(command)
+        else:
+            for command, value in zip(commands, values):
+                cur.execute(command, value)
 
         cur.close()
         conn.commit()
         conn.close()
     except (Exception, psycopg2.DatabaseError) as error:
         raise error
+
+def insert(command, value: tuple):
+    doTransaction(command, values=[value])
             
 
 def fetch(command: str):
     try:
         conn = connect()
-        cur = conn.cursor()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
 
         cur.execute(command)
-        records = cur.fetchall()
 
-        print('record print')
-        print(records)
-
-        return records
+        return cur.fetchall()
     except (Exception, psycopg2.DatabaseError) as error:
         raise error
     finally:
