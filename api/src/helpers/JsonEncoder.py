@@ -1,6 +1,7 @@
 import json
 from datetime import datetime, date, timedelta
 
+# depricated, marshmallow is used instead
 class JsonExtendEncoder(json.JSONEncoder):
     """
         This class provide an extension to json serialization for datetime/date.

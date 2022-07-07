@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS member (
 BANK_ACCOUNT = '''
 CREATE TABLE IF NOT EXISTS bank_account (
     id SERIAL PRIMARY KEY,
-    memberId INT NOT NULL,
+    member_id INT NOT NULL,
     account_number VARCHAR(255) NOT NULL,
     holder_name VARCHAR(255) NOT NULL,
     bank_name VARCHAR(255),
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS bank_account (
     mandate_date DATE,
     domicile_number VARCHAR(255),
     SEPA_status VARCHAR(255),
-    FOREIGN KEY (memberId) REFERENCES member (id),
+    FOREIGN KEY (member_id) REFERENCES member (id),
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP NOT NULL DEFAULT now(),
     deleted_at TIMESTAMP
@@ -60,15 +60,15 @@ CREATE TABLE IF NOT EXISTS ticket_definition (
 TICKET = '''
 CREATE TABLE IF NOT EXISTS ticket (
     id SERIAL PRIMARY KEY,
-    typeId INT NOT NULL,
-    memberId INT NOT NULL,
+    type_id INT NOT NULL,
+    member_id INT NOT NULL,
     price FLOAT8 NOT NULL,
     start_date DATE,
     end_date DATE,
     turns_left INT,
     active BOOLEAN NOT NULL DEFAULT TRUE,
-    FOREIGN KEY (typeId) REFERENCES ticket_definition (id),
-    FOREIGN KEY (memberId) REFERENCES member (id),
+    FOREIGN KEY (type_id) REFERENCES ticket_definition (id),
+    FOREIGN KEY (member_id) REFERENCES member (id),
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP NOT NULL DEFAULT now(),
     deleted_at TIMESTAMP
@@ -78,12 +78,12 @@ CREATE TABLE IF NOT EXISTS ticket (
 PAYEMENT = '''
 CREATE TABLE IF NOT EXISTS payement (
     id SERIAL PRIMARY KEY,
-    ticketId INT NOT NULL,
+    ticket_id INT NOT NULL,
     payement_period INT,
     date DATE NOT NULL,
     amount FLOAT8 NOT NULL,
     payed_amount FLOAT8 NOT NULL DEFAULT 0,
-    FOREIGN KEY (ticketId) REFERENCES ticket (id),
+    FOREIGN KEY (ticket_id) REFERENCES ticket (id),
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     updated_at TIMESTAMP NOT NULL DEFAULT now(),
     deleted_at TIMESTAMP

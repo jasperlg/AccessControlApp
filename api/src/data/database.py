@@ -13,7 +13,7 @@ def connect():
     except (Exception, psycopg2.DatabaseError) as error:
         raise error
 
-def doTransaction(*commands, values:list=None):
+def doTransaction(*commands, values=None):
     try:
         conn = connect()
         cur = conn.cursor()
@@ -23,6 +23,7 @@ def doTransaction(*commands, values:list=None):
                 cur.execute(command)
         else:
             for command, value in zip(commands, values):
+                print(command, value)
                 cur.execute(command, value)
 
         cur.close()
@@ -31,16 +32,33 @@ def doTransaction(*commands, values:list=None):
     except (Exception, psycopg2.DatabaseError) as error:
         raise error
 
-def insert(command, value: tuple):
+def execute(command, value):
     doTransaction(command, values=[value])
+
+def executeMany(command, values, fields: int):
+    try:
+        conn = connect()
+        cur = conn.cursor()
+
+        args_str = ','.join(cur.mogrify('(' + ','.join(['%s'] * fields) + ')', value).decode('utf-8') for value in values)
+        cur.execute(command + ' ' + args_str)
+
+        cur.close()
+        conn.commit()
+        conn.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        raise error
             
 
-def fetch(command: str):
+def fetchAll(command: str, value=None):
     try:
         conn = connect()
         cur = conn.cursor(cursor_factory=RealDictCursor)
 
-        cur.execute(command)
+        if value == None:
+            cur.execute(command)
+        else:
+            cur.execute(command, value)
 
         return cur.fetchall()
     except (Exception, psycopg2.DatabaseError) as error:
@@ -49,3 +67,21 @@ def fetch(command: str):
         if conn:
             cur.close()
             conn.close()
+
+def fetchOne(command: str, value):
+    try:
+        conn = connect()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+
+        cur.execute(command, value)
+
+        return cur.fetchone()
+    except (Exception, psycopg2.DatabaseError) as error:
+        raise error
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
+
+def fetchById(command: str, id: int):
+    return fetchOne(command + ' WHERE id = %s', [id])

@@ -10,7 +10,7 @@ VALUES
 '''
 
 bank_accounts_insert = '''
-INSERT INTO bank_account (memberId, account_number, holder_name, bank_name, IBAN, BIC, mandate, mandate_date, domicile_number, SEPA_status)
+INSERT INTO bank_account (member_id, account_number, holder_name, bank_name, IBAN, BIC, mandate, mandate_date, domicile_number, SEPA_status)
 VALUES
     (2, 'ewr32r234234', 'Ben', 'KBB', 'BE1245465463', '6702324234', 'dis is mandate', '2020-03-21', '12543534', 'goed')
 '''

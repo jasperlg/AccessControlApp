@@ -1,38 +1,74 @@
-from flask import Blueprint, request
-from models.ticket import TicketSchema
+from flask import Blueprint, request, abort, Response
+from models.ticket import TicketSchema, TicketDefinitionSchema, TURN_CARD
 from helpers.successResponse import successResponse
 import data.ticket as ticketService
 
-ticket = Blueprint('ticket', __name__)
+ticketBP = Blueprint('ticket', __name__)
 
-@ticket.route('/', methods=['GET'])
+@ticketBP.route('/', methods=['GET'])
 def getTickets():
     schema = TicketSchema(many=True)
-    return schema.dump(ticketService.getTickets())
 
-@ticket.route('/', methods=['POST'])
+    return schema.dumps(ticketService.getTickets())
+
+@ticketBP.route('/', methods=['POST'])
 def createTicket():
     schema = TicketSchema()
     ticket = schema.load(request.form)
     ticketService.createTicket(ticket)
+
     return successResponse()
 
-@ticket.route('/<int:id>', methods=['GET'])
-def getTicket(id):
-    return 0
+@ticketBP.route('/<int:id>', methods=['GET'])
+def getTicket(id: int):
+    schema = TicketSchema()
 
-# @ticket.route('/<int:id>', methods=['PUT'])
-# def updateTicket(id):
-#     return 0
+    return schema.dumps(ticketService.getTicket(id))
 
-# @ticket.route('/<int:id>', methods=['DELETE'])
-# def deleteTicket(id):
-#     return 0
+@ticketBP.route('/<int:id>', methods=['PUT'])
+def updateTicket(id: int):   
+    schema = TicketSchema()
+    ticket = schema.load(request.form)
+    ticketService.updateTicket(id, ticket)
 
-# @ticket.route('/<int:id>/block', method=['PUT'])
-# def blockTicket(id):
-#     return 0
+    return successResponse()
 
-# @ticket.route('/definitions', methods=['GET'])
-# def getTicketDefinitions():
-#     return json.dumps(ticketService.getTicketDefinitions(), cls=JsonExtendEncoder)
+@ticketBP.route('/<int:id>', methods=['DELETE'])
+def deleteTicket(id: int):
+    ticketService.deleteTicket(id)
+
+    return successResponse()
+
+@ticketBP.route('/<int:id>/block', methods=['PUT'])
+def blockTicket(id: int):
+    ticketService.blockTicket(id)
+
+    return successResponse()
+
+# TODO probably no id will be available
+# TODO write code for opening gate
+@ticketBP.route('/<int:id>/requestEntry', methods=['POST'])
+def requestEntry(id: int):
+    # check if ticket exists
+    ticket = ticketService.getTicketWithType(id)
+    
+    # check if ticket is active
+    if not ticket['active']:
+        abort(Response('Ticket not active', 401))
+
+    # check type
+    print(ticket['type'] == TURN_CARD)
+    if ticket['type'] == TURN_CARD:
+        print(ticket['turns_left'])
+        if ticket['turns_left'] > 0:
+            ticketService.useTicketTurn(id)
+        else:
+            abort(Response('Ticket has no turns left', 401))
+
+    return successResponse()
+
+@ticketBP.route('/definitions', methods=['GET'])
+def getTicketDefinitions():
+    schema = TicketDefinitionSchema(many=True)
+
+    return schema.dumps(ticketService.getTicketDefinitions())
