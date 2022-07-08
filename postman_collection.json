@@ -1,0 +1,952 @@
+{
+	"info": {
+		"_postman_id": "99692106-8be7-4f81-aa2f-ed47a2e2bdb0",
+		"name": "access control app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ticket",
+			"item": [
+				{
+					"name": "get all tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "member_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "195",
+									"type": "default"
+								},
+								{
+									"key": "start_date",
+									"value": "2022-07-06",
+									"type": "default"
+								},
+								{
+									"key": "end_date",
+									"value": "2023-07-06",
+									"type": "default"
+								},
+								{
+									"key": "turns_left",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/ticket/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update ticket",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "member_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "20",
+									"type": "default"
+								},
+								{
+									"key": "start_date",
+									"value": "2022-07-06",
+									"type": "default"
+								},
+								{
+									"key": "end_date",
+									"value": "2023-08-06",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/ticket/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/ticket/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "block ticket",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/ticket/:id/block",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								":id",
+								"block"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ticket definitions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/definitions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request entry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/:id/requestEntry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								":id",
+								"requestEntry"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bank account",
+			"item": [
+				{
+					"name": "get all bank accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bankAccount/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bankAccount",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get bank account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bankAccount/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bankAccount",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create bank account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "member_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "account_number",
+									"value": "T4sdP5",
+									"type": "default"
+								},
+								{
+									"key": "holder_name",
+									"value": "Jeff's pa",
+									"type": "default"
+								},
+								{
+									"key": "bank_name",
+									"value": "kbb",
+									"type": "default"
+								},
+								{
+									"key": "iban",
+									"value": "BE99999999999",
+									"type": "default"
+								},
+								{
+									"key": "bic",
+									"value": "790123324234",
+									"type": "default"
+								},
+								{
+									"key": "mandate",
+									"value": "mandate string",
+									"type": "default"
+								},
+								{
+									"key": "mandate_date",
+									"value": "2022-07-07",
+									"type": "default"
+								},
+								{
+									"key": "domicile_number",
+									"value": "domicile number string",
+									"type": "default"
+								},
+								{
+									"key": "sepa_status",
+									"value": "sepa status string",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/bankAccount",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bankAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update bank account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "member_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "account_number",
+									"value": "T4sdP5",
+									"type": "default"
+								},
+								{
+									"key": "holder_name",
+									"value": "Benster",
+									"type": "default"
+								},
+								{
+									"key": "bank_name",
+									"value": "kbb",
+									"type": "default"
+								},
+								{
+									"key": "iban",
+									"value": "BE99999999999",
+									"type": "default"
+								},
+								{
+									"key": "bic",
+									"value": "790123324234",
+									"type": "default"
+								},
+								{
+									"key": "mandate",
+									"value": "mandate string",
+									"type": "default"
+								},
+								{
+									"key": "mandate_date",
+									"value": "2022-07-07",
+									"type": "default"
+								},
+								{
+									"key": "domicile_number",
+									"value": "domicile number string",
+									"type": "default"
+								},
+								{
+									"key": "sepa_status",
+									"value": "sepa status string",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/bankAccount/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bankAccount",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete bank acount",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/bankAccount/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bankAccount",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "get all members",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/member/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get member",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/member/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "client_number",
+									"value": "client number string",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "email@email.email",
+									"type": "default"
+								},
+								{
+									"key": "phone",
+									"value": "phone as string",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "Fluppe",
+									"type": "default"
+								},
+								{
+									"key": "rijksregister",
+									"value": "99.12.3-232-44",
+									"type": "default"
+								},
+								{
+									"key": "gender",
+									"value": "man",
+									"type": "default"
+								},
+								{
+									"key": "birth_date",
+									"value": "1999-12-03",
+									"type": "default"
+								},
+								{
+									"key": "street_and_number",
+									"value": "Straat 44",
+									"type": "default"
+								},
+								{
+									"key": "city",
+									"value": "Belgium is a beautiful city",
+									"type": "default"
+								},
+								{
+									"key": "postal_code",
+									"value": "8000",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/member",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update member",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "client_number",
+									"value": "client number string",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "email@email.email",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "phone as string",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Fluppe",
+									"type": "text"
+								},
+								{
+									"key": "rijksregister",
+									"value": "99.12.3-232-44",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "man",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "1999-12-03",
+									"type": "text"
+								},
+								{
+									"key": "street_and_number",
+									"value": "Straat 44",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Belgium is a beautiful city",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "8000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/member/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete member",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/member/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payement",
+			"item": [
+				{
+					"name": "get payement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/payement/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"payement",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get payements of ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/:ticket_id/payements",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								":ticket_id",
+								"payements"
+							],
+							"variable": [
+								{
+									"key": "ticket_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add payements to ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "payement_duration",
+									"value": "10",
+									"type": "default"
+								},
+								{
+									"key": "date_of_first_payement",
+									"value": "2022-07-07",
+									"type": "default"
+								},
+								{
+									"key": "amount",
+									"value": "113.3",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/ticket/:ticket_id/payement/add",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								":ticket_id",
+								"payement",
+								"add"
+							],
+							"variable": [
+								{
+									"key": "ticket_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pay payement",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "payed_amount",
+									"value": "11.33",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/payement/:id/pay",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"payement",
+								":id",
+								"pay"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete payement",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/payement/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"payement",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "admin",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.W8XZH-MdoA21cKocoI4Uj8S0SU208IZB8ZCEqqLYdfA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8000",
+			"type": "default"
+		}
+	]
+}
