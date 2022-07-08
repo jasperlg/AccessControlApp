@@ -90,8 +90,20 @@ CREATE TABLE IF NOT EXISTS payement (
 )
 '''
 
+USER = '''
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now(),
+    deleted_at TIMESTAMP
+)
+'''
+
 DROP_SCHEMA = '''
-DROP TABLE IF EXISTS ticket, payement, ticket_definition, bank_account, member
+DROP TABLE IF EXISTS ticket, payement, ticket_definition, bank_account, member, users
 '''
 
 def removeDBTables():
@@ -103,4 +115,4 @@ def createDBTables():
     except:
         print('TICKET_TYPE already exists')
 
-    doTransaction(MEMBER, BANK_ACCOUNT, TICKET_DEFINITION, TICKET, PAYEMENT)
+    doTransaction(MEMBER, BANK_ACCOUNT, TICKET_DEFINITION, TICKET, PAYEMENT, USER)

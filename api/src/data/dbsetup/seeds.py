@@ -27,5 +27,11 @@ INSERT INTO ticket
 VALUES (1, 1, 1, 496.3, '1999-07-03', '2000-07-03')
 '''
 
+# user with name = admin and password = 123456
+users_insert = '''
+INSERT INTO users (name, email, password_hash)
+VALUES ('admin', 'admin@email.com', '$2b$12$uVIvVdv.YAAhWpv7haSSzeG1sbQYk0aNrGjV97VumVaIpPvBkuMhC')
+'''
+
 def seedDB():
-    doTransaction(members_insert, bank_accounts_insert, ticket_definitions_insert, tickets_insert)
+    doTransaction(members_insert, bank_accounts_insert, ticket_definitions_insert, tickets_insert, users_insert)

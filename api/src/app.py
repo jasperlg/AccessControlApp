@@ -1,4 +1,5 @@
 from flask import Flask
+from rest.auth import authBP
 from rest.ticket import ticketBP
 from rest.bankAccount import bankAccountBP
 from rest.member import memberBP
@@ -6,6 +7,7 @@ from rest.payement import payementBP
 
 app = Flask(__name__)
 
+app.register_blueprint(authBP, url_prefix='/auth')
 app.register_blueprint(ticketBP, url_prefix='/ticket')
 app.register_blueprint(bankAccountBP, url_prefix='/bankAccount')
 app.register_blueprint(memberBP, url_prefix='/member')

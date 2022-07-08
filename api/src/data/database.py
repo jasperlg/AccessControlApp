@@ -1,11 +1,13 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from config.config import getConfig
 
-USER = 'postgres'
-PASSWORD = 'mysecretpossword'
-HOST = 'postgres'
-PORT = 5432
-DATABASE = 'postgres'
+config = getConfig('DATABASE')
+USER = config['USER']
+PASSWORD = config['PASSWORD']
+HOST = config['HOST']
+PORT = config['PORT']
+DATABASE = config['DATABASE']
 
 def connect():
     try:
@@ -64,9 +66,11 @@ def fetchAll(command: str, value=None):
     except (Exception, psycopg2.DatabaseError) as error:
         raise error
     finally:
-        if conn:
+        try:
             cur.close()
             conn.close()
+        except:
+            pass
 
 def fetchOne(command: str, value):
     try:
@@ -79,9 +83,11 @@ def fetchOne(command: str, value):
     except (Exception, psycopg2.DatabaseError) as error:
         raise error
     finally:
-        if conn:
+        try:
             cur.close()
             conn.close()
+        except:
+            pass
 
 def fetchById(command: str, id: int):
     return fetchOne(command + ' WHERE id = %s', [id])
