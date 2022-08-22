@@ -1,19 +1,15 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import SideMenu from "./components/SideMenu.vue";
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+<div class="dark w-screen h-screen relative dark:bg-gray-700 bg-gray-100 grid grid-cols-10 overflow-hidden">
+  <div
+    class="col-span-2 sm:col-span-4 lg:col-span-2 dark:bg-gray-700 bg-white h-full"
+  >
+    <SideMenu></SideMenu>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+</div>
 </template>
 
 <style scoped>
