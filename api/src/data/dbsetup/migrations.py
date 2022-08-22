@@ -76,10 +76,10 @@ CREATE TABLE IF NOT EXISTS ticket (
 '''
 
 PAYEMENT = '''
-CREATE TABLE IF NOT EXISTS payement (
+CREATE TABLE IF NOT EXISTS payment (
     id SERIAL PRIMARY KEY,
     ticket_id INT NOT NULL,
-    payement_period INT,
+    payment_period INT,
     date DATE NOT NULL,
     amount FLOAT8 NOT NULL,
     payed_amount FLOAT8 NOT NULL DEFAULT 0,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS users (
 '''
 
 DROP_SCHEMA = '''
-DROP TABLE IF EXISTS ticket, payement, ticket_definition, bank_account, member, users
+DROP TABLE IF EXISTS ticket, payment, ticket_definition, bank_account, member, users
 '''
 
 def removeDBTables():

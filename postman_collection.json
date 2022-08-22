@@ -712,20 +712,20 @@
 			]
 		},
 		{
-			"name": "payement",
+			"name": "payment",
 			"item": [
 				{
-					"name": "get payement",
+					"name": "get payment",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/payement/:id",
+							"raw": "{{url}}/payment/:id",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"payement",
+								"payment",
 								":id"
 							],
 							"variable": [
@@ -739,19 +739,19 @@
 					"response": []
 				},
 				{
-					"name": "get payements of ticket",
+					"name": "get payments of ticket",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/ticket/:ticket_id/payements",
+							"raw": "{{url}}/ticket/:ticket_id/payments",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"ticket",
 								":ticket_id",
-								"payements"
+								"payments"
 							],
 							"variable": [
 								{
@@ -764,7 +764,7 @@
 					"response": []
 				},
 				{
-					"name": "add payements to ticket",
+					"name": "add payments to ticket",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -772,12 +772,12 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "payement_duration",
+									"key": "payment_duration",
 									"value": "10",
 									"type": "default"
 								},
 								{
-									"key": "date_of_first_payement",
+									"key": "date_of_first_payment",
 									"value": "2022-07-07",
 									"type": "default"
 								},
@@ -789,14 +789,14 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/ticket/:ticket_id/payement/add",
+							"raw": "{{url}}/ticket/:ticket_id/payment/add",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"ticket",
 								":ticket_id",
-								"payement",
+								"payment",
 								"add"
 							],
 							"variable": [
@@ -810,7 +810,7 @@
 					"response": []
 				},
 				{
-					"name": "pay payement",
+					"name": "pay payment",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -825,12 +825,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/payement/:id/pay",
+							"raw": "{{url}}/payment/:id/pay",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"payement",
+								"payment",
 								":id",
 								"pay"
 							],
@@ -845,17 +845,17 @@
 					"response": []
 				},
 				{
-					"name": "delete payement",
+					"name": "delete payment",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/payement/:id",
+							"raw": "{{url}}/payment/:id",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"payement",
+								"payment",
 								":id"
 							],
 							"variable": [
