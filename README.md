@@ -21,13 +21,15 @@ simply execute `raspberry_setup.sh` and the app should be up and running.
 To develop further on this project, you can run the application locally and write python in the
 /api folder. You might restart the container running `docker compose up` while developping.
 
-To develop the frontend, it's best practise to `npm install` and `yarn serve` in the web folder,
-so you can develop quite fast. In the ./dist folder your project is build. 
+To develop the frontend, it's best practise to `yarn` and `yarn start` in the web folder,
+so you can develop quite fast. In the web/build folder your project is build. 
 
 You can deploy by rebuilding the images and pushing them to ducker hub.
 
 
 ## Roadmap
+
+- Front-end technologie changed to react.ts
 
 - building and using the created docker images to deploy on production
 - Build a frontend in Vue.js
