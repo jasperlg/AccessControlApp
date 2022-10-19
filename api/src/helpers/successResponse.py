@@ -1,5 +1,6 @@
 import json
-from helpers.JsonEncoder import JsonExtendEncoder
+
+from flask import jsonify
 
 def successResponse():
-    return json.dumps({ 'success': True })
+    return jsonify({ 'success': True })

@@ -1,5 +1,6 @@
 import json
-from flask import Blueprint, Response, request, abort
+from flask import Blueprint, Response, jsonify, request, abort
+from flask_cors import CORS
 import jwt
 from config.config import getConfig
 from models.user import LoginUserSchema
@@ -12,7 +13,7 @@ authBP = Blueprint('auth', __name__)
 @authBP.route('/login', methods=['POST'])
 def login():
     schema = LoginUserSchema()
-    userInput = schema.load(request.form)
+    userInput = schema.load(request.json)
     
     user = userService.login(userInput['name'], userInput['password'])
 
@@ -22,6 +23,6 @@ def login():
     try:
         token = jwt.encode({'user_id': user['id']}, JWT_KEY, algorithm='HS256')
 
-        return json.dumps({'Authorization': token})
+        return jsonify({'Authorization': token})
     except Exception as error:
         abort(Response('Error occured while generating token', error))

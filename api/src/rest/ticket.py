@@ -6,7 +6,7 @@ import data.ticket as ticketService
 
 ticketBP = Blueprint('ticket', __name__)
 
-@ticketBP.route('/', methods=['GET'])
+@ticketBP.route('/ticket', methods=['GET'])
 @tokenRequired
 def getTickets():
     schema = TicketSchema(many=True)
